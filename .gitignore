@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+
+# Ignore database files
+*.db
+*.sqlite3
+*.pdb
+
+# Ignore environment variables and secrets
+.env
+config/settings/local.py
+config/.env
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Node.js (if using frontend)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Redis, Celery, Channels
+celerybeat-schedule
+*.pid
+
+# Migrations (optional, but recommended to keep them)
+**/migrations/*.pyc
+**/migrations/*.pyo
+
+# Docker
+*.dockerfile
+*.tar

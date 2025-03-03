@@ -11,7 +11,7 @@ def get_refresh_access_token(refresh_token: str):
         "client_id":settings.GOOGLE_CLIENT_ID,
         "client_secret": settings.GOOGLE_CLIENT_SECRET,
         "refresh_token": refresh_token,
-        "grant_access": "refresh_token",
+        "grant_type": "refresh_token",
     }
     response = requests.post(url=GOOGLE_TOKEN_URL,json=data)
     return response.json()
@@ -24,6 +24,7 @@ def get_valid_token(user: str):
         return None    
     if user_token.expires_at < now():
         new_access_token = get_refresh_access_token(user_token.refresh_token)
+        
         user_token.access_token = new_access_token["access_token"]
         user_token.expires_at = now() + timedelta(seconds=new_access_token["expires_in"])
         user_token.save()
@@ -36,7 +37,7 @@ def get_user_credentials(request):
         "code": code,
         "client_id": settings.GOOGLE_CLIENT_ID,
         "client_secret": settings.GOOGLE_CLIENT_SECRET,
-        "redirect_uri": "http://" + request.get_host() + settings.REDIRECT_URL,
+        "redirect_uri": "https://" + request.get_host() + settings.REDIRECT_URL,
         "grant_type": "authorization_code",
     }
     
